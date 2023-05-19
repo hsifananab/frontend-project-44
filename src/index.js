@@ -23,7 +23,7 @@ const playRound = (getGameQuestion) => {
 const runEngine = (gameData) => {
   printWelcomeMessage();
   const playerName = getPlayerName();
-  printGameRules();
+  printGameRules(gameData.gameRules);
 
   let isWinner = true;
   for (let i = 1; i <= NUMBER_OF_ROUNDS; i += 1) {
