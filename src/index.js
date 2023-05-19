@@ -2,39 +2,42 @@ import readlineSync from 'readline-sync';
 
 const NUMBER_OF_ROUNDS = 3;
 
-const runEngine = (gameData) => {
-  console.log('Welcome to the Brain Games!');
+const printWelcomeMessage = () => console.log('Welcome to the Brain Games!');
+
+const getPlayerName = () => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
+  return name;
+};
 
-  console.log(gameData.gameRules);
+const printGameRules = (gameRules) => console.log(gameRules);
 
-  const playRound = (currentRound) => {
-    if (currentRound > NUMBER_OF_ROUNDS) {
-      return true;
+const playRound = (getGameQuestion) => {
+  const { question, correctAnswer } = getGameQuestion();
+  console.log(`Question: ${question}`);
+
+  const playerAnswer = readlineSync.question('Your answer: ');
+  return playerAnswer === correctAnswer;
+};
+
+const runEngine = (gameData) => {
+  printWelcomeMessage();
+  const playerName = getPlayerName();
+  printGameRules();
+
+  let isWinner = true;
+  for (let i = 1; i <= NUMBER_OF_ROUNDS; i += 1) {
+    if (!playRound(gameData.getGameQuestion)) {
+      isWinner = false;
+      break;
     }
-
-    const { question, correctAnswer } = gameData.getGameQuestion();
-    console.log(`Question: ${question}`);
-
-    const answer = readlineSync.question('Your answer: ');
-
-    if (answer === correctAnswer) {
-      console.log('Correct!');
-
-      return playRound(currentRound + 1);
-    }
-
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    return false;
-  };
-
-  const isWinner = playRound(1);
+    console.log('Correct!');
+  }
 
   if (isWinner) {
-    console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${playerName}!`);
   } else {
-    console.log(`Let's try again, ${name}!`);
+    console.log(`Let's try again, ${playerName}!`);
   }
 };
 
