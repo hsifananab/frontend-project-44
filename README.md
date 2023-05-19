@@ -7,6 +7,10 @@
 
 ## Games:
 
-# brain-even
+### brain-even
 
 [![asciicast](https://asciinema.org/a/pSfOYDBNZZ2gZkicb94TS6jSd.svg)](https://asciinema.org/a/pSfOYDBNZZ2gZkicb94TS6jSd)
+
+### brain-calc
+
+[![asciicast](https://asciinema.org/a/RDD3SGLQVW8VN34aMKBj19BnG.svg)](https://asciinema.org/a/RDD3SGLQVW8VN34aMKBj19BnG)
