@@ -8,3 +8,13 @@ export const getGcd = (num1, num2) => {
   }
   return getGcd(num2, num1 % num2);
 };
+
+export const getProgression = (start, delta, numOfElems) => {
+  const progression = [];
+
+  for (let i = 1; i < numOfElems; i += 1) {
+    progression.push(start + delta * i - 1);
+  }
+
+  return progression;
+};
